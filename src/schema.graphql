@@ -1,0 +1,58 @@
+# import Subscription.product, Query.productsConnection, Post, Product, ProductWhereInput, ProductOrderByInput, ProductWhereUniqueInput from "./generated/prisma.graphql"
+
+scalar Upload
+
+type Query {
+	feed: [Post!]!
+	drafts: [Post!]!
+	post(id: ID!): Post!
+	products(
+		where: ProductWhereInput
+		orderBy: ProductOrderByInput
+		skip: Int
+		after: String
+		before: String
+		first: Int
+		last: Int
+	): [Product]!
+	me: User
+}
+
+type RefreshTokenPayload {
+	token: String!
+	userId: String!
+}
+
+type Mutation {
+	refreshToken: RefreshTokenPayload!
+	signup(email: String!, password: String!, name: String!): AuthPayload!
+	login(email: String!, password: String!): LoginResponse!
+	createProduct(name: String!, price: Float!, picture: Upload!): Product!
+	deleteProduct(where: ProductWhereUniqueInput!): Product
+	updateProduct(id: ID!, name: String, price: Float, picture: Upload): Product
+	createDraft(title: String!, text: String!): Post!
+	publish(id: ID!): Post!
+	deletePost(id: ID!): Post!
+}
+
+type Error {
+	field: String!
+	msg: String!
+}
+
+type LoginResponse {
+	payload: AuthPayload
+	error: Error
+}
+
+type AuthPayload {
+	token: String!
+	user: User!
+}
+
+type User {
+	id: ID!
+	email: String!
+	name: String!
+	posts: [Post!]!
+}
