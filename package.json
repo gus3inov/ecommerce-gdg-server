@@ -1,0 +1,10 @@
+{
+  "name": "ecommerce-gdg-server",
+  "version": "0.1.0",
+  "scripts": {
+    "start": "nodemon --watch src/**/* -e ts,tsx --exec ts-node -r tsconfig-paths/register src/index.ts",
+    "dev": "npm-run-all --parallel start playground",
+    "playground": "graphql playground",
+    "prisma": "prisma"
+  }
+}
