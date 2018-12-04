@@ -1,41 +1,43 @@
 {
-  "compilerOptions": {
-    "skipLibCheck": true,
-    "baseUrl": "./",
-    "paths": {
-      "@core/*": ["server/core/*"],
-      "@server/*": ["server/*"]
-    },
-    "rootDir": "/",
-    "module": "commonjs",
-    "esModuleInterop": true,
-    "target": "es2017",
-    "lib": ["es6", "dom"],
-    "sourceMap": true,
-    "allowJs": true,
-    "jsx": "react",
-    "moduleResolution": "node",
-    "forceConsistentCasingInFileNames": true,
-    "noImplicitReturns": true,
-    "noImplicitThis": true,
-    "noImplicitAny": true,
-    "strictNullChecks": true,
-    "suppressImplicitAnyIndexErrors": true,
-    "noUnusedLocals": true
-  },
-  "include": ["./src/**/*"],
-  "exclude": [
-    "node_modules",
-    "build",
-    "scripts",
-    "acceptance-tests",
-    "webpack",
-    "jest",
-    "src/setupTests.ts",
-    "./src/**/*.test.ts",
-    "./src/**/*.spec.ts",
-    "./src/**/*.spec.tsx",
-    "./src/**/*.test.tsx"
-  ],
-  "typeRoots": ["../node_modules/@types", "../@types"]
+	"compilerOptions": {
+		"skipLibCheck": true,
+		"baseUrl": "./",
+		"paths": {
+			"@server/*": ["src/*"],
+			"@core/*": ["src/core/*"],
+			"@resolvers/*": ["src/resolvers/*"],
+			"@generated/*": ["src/generated/*"]
+		},
+		"rootDir": "/",
+		"module": "commonjs",
+		"esModuleInterop": true,
+		"target": "es2017",
+		"lib": ["es6", "dom"],
+		"sourceMap": true,
+		"allowJs": true,
+		"jsx": "react",
+		"moduleResolution": "node",
+		"forceConsistentCasingInFileNames": true,
+		"noImplicitReturns": true,
+		"noImplicitThis": true,
+		"noImplicitAny": true,
+		"strictNullChecks": true,
+		"suppressImplicitAnyIndexErrors": true,
+		"noUnusedLocals": true
+	},
+	"include": ["./src/**/*"],
+	"exclude": [
+		"node_modules",
+		"build",
+		"scripts",
+		"acceptance-tests",
+		"webpack",
+		"jest",
+		"src/setupTests.ts",
+		"./src/**/*.test.ts",
+		"./src/**/*.spec.ts",
+		"./src/**/*.spec.tsx",
+		"./src/**/*.test.tsx"
+	],
+	"typeRoots": ["../node_modules/@types", "../@types"]
 }
