@@ -3,10 +3,12 @@
 		"skipLibCheck": true,
 		"baseUrl": "./",
 		"paths": {
+			"*": ["typings/*"],
 			"@server/*": ["src/*"],
 			"@core/*": ["src/core/*"],
 			"@resolvers/*": ["src/resolvers/*"],
-			"@generated/*": ["src/generated/*"]
+			"@generated/*": ["src/generated/*"],
+			"@utils/*": ["src/utils/*"]
 		},
 		"rootDir": "/",
 		"module": "commonjs",
@@ -14,8 +16,6 @@
 		"target": "es2017",
 		"lib": ["es6", "dom"],
 		"sourceMap": true,
-		"allowJs": true,
-		"jsx": "react",
 		"moduleResolution": "node",
 		"forceConsistentCasingInFileNames": true,
 		"noImplicitReturns": true,
@@ -39,5 +39,5 @@
 		"./src/**/*.spec.tsx",
 		"./src/**/*.test.tsx"
 	],
-	"typeRoots": ["../node_modules/@types", "../@types"]
+	"typeRoots": ["../node_modules/@types", "./typings"]
 }
