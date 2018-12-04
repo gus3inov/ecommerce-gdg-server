@@ -5,12 +5,14 @@ import { ApolloServer, makeExecutableSchema } from 'apollo-server-koa';
 import { createServer } from 'http';
 import { importSchema } from 'graphql-import';
 import { graphqlUploadKoa } from 'graphql-upload';
+import resolvers from './resolvers';
 
 const PORT = process.env.PORT || 4000;
 
 const typeDefs = importSchema('./src/schema.graphql');
 const schema = makeExecutableSchema({
 	typeDefs,
+	resolvers,
 });
 
 const server = new ApolloServer({
