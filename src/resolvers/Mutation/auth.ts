@@ -1,8 +1,14 @@
 import * as bcrypt from 'bcryptjs';
-import * as jwt from 'jsonwebtoken';
-import { Context } from '../../utils/token';
+import { Context, createToken, getUserId } from '../../utils/token';
 
 export const auth = {
+	async refreshToken(parent: any, args: any, ctx: Context, info: any) {
+		const userId = getUserId(ctx);
+		return {
+			token: createToken(userId),
+			userId,
+		};
+	},
 	async signup(parent: any, args: any, ctx: Context, info: any) {
 		const password = await bcrypt.hash(args.password, 10);
 		const user = await ctx.db.mutation.createUser({
@@ -10,30 +16,37 @@ export const auth = {
 		});
 
 		return {
-			token: jwt.sign({ userId: user.id }, process.env.APP_SECRET),
+			token: createToken(user.id),
 			user,
 		};
 	},
 
-	async login(
-		parent: any,
-		{ email, password }: { email: string; password: string },
-		ctx: Context,
-		info: any
-	) {
+	async login(parent: any, { email, password }: any, ctx: Context, info: any) {
 		const user = await ctx.db.query.user({ where: { email } });
 		if (!user) {
-			throw new Error(`No such user found for email: ${email}`);
+			return {
+				error: {
+					field: 'email',
+					msg: 'No user found',
+				},
+			};
 		}
 
 		const valid = await bcrypt.compare(password, user.password);
 		if (!valid) {
-			throw new Error('Invalid password');
+			return {
+				error: {
+					field: 'password',
+					msg: 'Invalid password',
+				},
+			};
 		}
 
 		return {
-			token: jwt.sign({ userId: user.id }, process.env.APP_SECRET),
-			user,
+			payload: {
+				token: createToken(user.id),
+				user,
+			},
 		};
 	},
 };
