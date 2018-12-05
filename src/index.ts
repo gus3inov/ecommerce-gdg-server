@@ -1,8 +1,7 @@
-import * as Koa from 'koa';
-import * as staticMiddleware from 'koa-static';
+import Koa from 'koa';
+import staticMiddleware from 'koa-static';
 import { Prisma } from 'prisma-binding';
 import { ApolloServer, makeExecutableSchema } from 'apollo-server-koa';
-import { createServer } from 'http';
 import { importSchema } from 'graphql-import';
 import { graphqlUploadKoa } from 'graphql-upload';
 import resolvers from './resolvers';
@@ -13,6 +12,9 @@ const typeDefs = importSchema('./src/schema.graphql');
 const schema = makeExecutableSchema({
 	typeDefs,
 	resolvers,
+	resolverValidationOptions: {
+		requireResolversForResolveType: false,
+	},
 });
 
 const server = new ApolloServer({
@@ -22,9 +24,10 @@ const server = new ApolloServer({
 		...req,
 		db: new Prisma({
 			typeDefs: './src/generated/prisma.graphql',
-			endpoint: process.env.PRISMA_ENDPOINT,
+			endpoint:
+				'https://eu1.prisma.sh/muslim-guseinov-4235e0/ecommerce-gdg/dev',
 			debug: true,
-			secret: process.env.PRISMA_SECRET,
+			secret: 'mysecret123',
 		}),
 	}),
 });
@@ -40,14 +43,7 @@ app.use(
 
 app.use(staticMiddleware('/images'));
 
-server.applyMiddleware({
-	app,
-});
-
-const httpServer = createServer(app);
-server.installSubscriptionHandlers(httpServer);
-
-httpServer.listen(
+const httpServer = app.listen(
 	{
 		port: PORT,
 	},
@@ -62,3 +58,9 @@ httpServer.listen(
 		);
 	}
 );
+
+server.applyMiddleware({
+	app,
+});
+
+server.installSubscriptionHandlers(httpServer);
