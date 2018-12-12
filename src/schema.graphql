@@ -15,6 +15,7 @@ type Query {
 		first: Int
 		last: Int
 	): [Product]!
+	product(id: String!): Product!
 	me: User
 }
 

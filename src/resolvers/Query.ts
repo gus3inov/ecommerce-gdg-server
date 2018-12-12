@@ -5,6 +5,10 @@ export const Query = {
 	products(parent: any, args: any, ctx: Context, info: any) {
 		return forwardTo('db')(parent, args, ctx, info);
 	},
+	product(parent: any, args: any, ctx: Context, info: any) {
+		const id = args.id;
+		return ctx.db.query.product({ where: { id } }, info);
+	},
 	feed(parent: any, args: any, ctx: Context, info: any) {
 		return ctx.db.query.posts({ where: { isPublished: true } }, info);
 	},

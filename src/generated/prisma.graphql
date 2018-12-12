@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/muslim-guseinov-4235e0/ecommerce-gdg/dev
-# timestamp: Wed Dec 05 2018 20:25:27 GMT+0300 (RTZ 2 (зима))
+# timestamp: Wed Dec 12 2018 21:43:20 GMT+0300 (RTZ 2 (зима))
 
 type AggregatePost {
   count: Int!
