@@ -9,6 +9,11 @@ export const Query = {
 		const id = args.id;
 		return ctx.db.query.product({ where: { id } }, info);
 	},
+	productsConnection: (parent: any, args: any, ctx: Context, info: any) => {
+		getUserId(ctx);
+
+		return forwardTo('db')(parent, args, ctx, info);
+	},
 	feed(parent: any, args: any, ctx: Context, info: any) {
 		return ctx.db.query.posts({ where: { isPublished: true } }, info);
 	},

@@ -2,7 +2,7 @@ import * as bcrypt from 'bcryptjs';
 import { Context, createToken, getUserId } from '../../utils/token';
 
 export const auth = {
-	async refreshToken(parent: any, args: any, ctx: Context, info: any) {
+	async refreshToken(parent: any, args: any, ctx: any, info: any) {
 		const userId = getUserId(ctx);
 		return {
 			token: createToken(userId),
