@@ -35,3 +35,6 @@
 | `add/<name_module>`    | Adding a module                                                          |
 | `update/<name_module>` | Updating the module                                                      |
 | `remove/<name_module>` | Removing Module                                                          |
+### Generate prisma bindings 
+
+`prisma-binding   --language typescript   --input src/generated/prisma.graphql   --outputBinding src/generated/prisma.ts`
