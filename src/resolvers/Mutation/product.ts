@@ -4,11 +4,11 @@ import { forwardTo } from 'prisma-binding';
 import { getUserId, Context } from '../../utils/token';
 
 const storeUpload = async ({ stream, filename }: any): Promise<any> => {
-	const path = `images/${shortid.generate()}`;
+	const path = shortid.generate();
 
 	return new Promise((resolve, reject) =>
 		stream
-			.pipe(createWriteStream(path))
+			.pipe(createWriteStream(`/images/${path}`))
 			.on('finish', () => resolve({ path }))
 			.on('error', reject)
 	);
@@ -33,7 +33,7 @@ const processUpload = async (upload: any) => {
 export const product = {
 	async createProduct(
 		parent: any,
-		{ name, price, picture }: any,
+		{ name, price, picture, description }: any,
 		ctx: Context,
 		info: any
 	) {
@@ -46,6 +46,7 @@ export const product = {
 					name,
 					price,
 					pictureUrl,
+					description,
 					seller: {
 						connect: { id: userId },
 					},

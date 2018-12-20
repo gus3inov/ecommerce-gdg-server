@@ -23,6 +23,7 @@ type Product {
 	updatedAt: DateTime!
 	name: String!
 	pictureUrl: String!
+	description: String
 	price: Float!
 	seller: User!
 }

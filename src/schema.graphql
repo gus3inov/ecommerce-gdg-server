@@ -28,7 +28,7 @@ type Mutation {
 	refreshToken: RefreshTokenPayload!
 	signup(email: String!, password: String!, name: String!): AuthPayload!
 	login(email: String!, password: String!): LoginResponse!
-	createProduct(name: String!, price: Float!, picture: Upload!): Product!
+	createProduct(name: String!, price: Float!, description: String, picture: Upload!): Product!
 	deleteProduct(where: ProductWhereUniqueInput!): Product
 	updateProduct(id: ID!, name: String, price: Float, picture: Upload): Product
 	createDraft(title: String!, text: String!): Post!

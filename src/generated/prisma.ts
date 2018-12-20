@@ -675,6 +675,7 @@ type Product implements Node {
   updatedAt: DateTime!
   name: String!
   pictureUrl: String!
+  description: String
   price: Float!
   seller: User!
 }
@@ -692,6 +693,7 @@ type ProductConnection {
 input ProductCreateInput {
   name: String!
   pictureUrl: String!
+  description: String
   price: Float!
   seller: UserCreateOneWithoutProductsInput!
 }
@@ -704,6 +706,7 @@ input ProductCreateManyWithoutSellerInput {
 input ProductCreateWithoutSellerInput {
   name: String!
   pictureUrl: String!
+  description: String
   price: Float!
 }
 
@@ -727,6 +730,8 @@ enum ProductOrderByInput {
   name_DESC
   pictureUrl_ASC
   pictureUrl_DESC
+  description_ASC
+  description_DESC
   price_ASC
   price_DESC
 }
@@ -737,6 +742,7 @@ type ProductPreviousValues {
   updatedAt: DateTime!
   name: String!
   pictureUrl: String!
+  description: String
   price: Float!
 }
 
@@ -913,6 +919,46 @@ input ProductScalarWhereInput {
 
   """All values not ending with the given string."""
   pictureUrl_not_ends_with: String
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
   price: Float
 
   """All values that are not equal to given value."""
@@ -979,6 +1025,7 @@ input ProductSubscriptionWhereInput {
 input ProductUpdateInput {
   name: String
   pictureUrl: String
+  description: String
   price: Float
   seller: UserUpdateOneRequiredWithoutProductsInput
 }
@@ -986,12 +1033,14 @@ input ProductUpdateInput {
 input ProductUpdateManyDataInput {
   name: String
   pictureUrl: String
+  description: String
   price: Float
 }
 
 input ProductUpdateManyMutationInput {
   name: String
   pictureUrl: String
+  description: String
   price: Float
 }
 
@@ -1014,6 +1063,7 @@ input ProductUpdateManyWithWhereNestedInput {
 input ProductUpdateWithoutSellerDataInput {
   name: String
   pictureUrl: String
+  description: String
   price: Float
 }
 
@@ -1201,6 +1251,46 @@ input ProductWhereInput {
 
   """All values not ending with the given string."""
   pictureUrl_not_ends_with: String
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
   price: Float
 
   """All values that are not equal to given value."""
@@ -1643,6 +1733,8 @@ export type ProductOrderByInput =   'id_ASC' |
   'name_DESC' |
   'pictureUrl_ASC' |
   'pictureUrl_DESC' |
+  'description_ASC' |
+  'description_DESC' |
   'price_ASC' |
   'price_DESC'
 
@@ -1880,6 +1972,7 @@ export interface PostWhereUniqueInput {
 export interface ProductCreateInput {
   name: String
   pictureUrl: String
+  description?: String | null
   price: Float
   seller: UserCreateOneWithoutProductsInput
 }
@@ -1892,6 +1985,7 @@ export interface ProductCreateManyWithoutSellerInput {
 export interface ProductCreateWithoutSellerInput {
   name: String
   pictureUrl: String
+  description?: String | null
   price: Float
 }
 
@@ -1957,6 +2051,20 @@ export interface ProductScalarWhereInput {
   pictureUrl_not_starts_with?: String | null
   pictureUrl_ends_with?: String | null
   pictureUrl_not_ends_with?: String | null
+  description?: String | null
+  description_not?: String | null
+  description_in?: String[] | String | null
+  description_not_in?: String[] | String | null
+  description_lt?: String | null
+  description_lte?: String | null
+  description_gt?: String | null
+  description_gte?: String | null
+  description_contains?: String | null
+  description_not_contains?: String | null
+  description_starts_with?: String | null
+  description_not_starts_with?: String | null
+  description_ends_with?: String | null
+  description_not_ends_with?: String | null
   price?: Float | null
   price_not?: Float | null
   price_in?: Float[] | Float | null
@@ -1981,6 +2089,7 @@ export interface ProductSubscriptionWhereInput {
 export interface ProductUpdateInput {
   name?: String | null
   pictureUrl?: String | null
+  description?: String | null
   price?: Float | null
   seller?: UserUpdateOneRequiredWithoutProductsInput | null
 }
@@ -1988,12 +2097,14 @@ export interface ProductUpdateInput {
 export interface ProductUpdateManyDataInput {
   name?: String | null
   pictureUrl?: String | null
+  description?: String | null
   price?: Float | null
 }
 
 export interface ProductUpdateManyMutationInput {
   name?: String | null
   pictureUrl?: String | null
+  description?: String | null
   price?: Float | null
 }
 
@@ -2016,6 +2127,7 @@ export interface ProductUpdateManyWithWhereNestedInput {
 export interface ProductUpdateWithoutSellerDataInput {
   name?: String | null
   pictureUrl?: String | null
+  description?: String | null
   price?: Float | null
 }
 
@@ -2092,6 +2204,20 @@ export interface ProductWhereInput {
   pictureUrl_not_starts_with?: String | null
   pictureUrl_ends_with?: String | null
   pictureUrl_not_ends_with?: String | null
+  description?: String | null
+  description_not?: String | null
+  description_in?: String[] | String | null
+  description_not_in?: String[] | String | null
+  description_lt?: String | null
+  description_lte?: String | null
+  description_gt?: String | null
+  description_gte?: String | null
+  description_contains?: String | null
+  description_not_contains?: String | null
+  description_starts_with?: String | null
+  description_not_starts_with?: String | null
+  description_ends_with?: String | null
+  description_not_ends_with?: String | null
   price?: Float | null
   price_not?: Float | null
   price_in?: Float[] | Float | null
@@ -2361,6 +2487,7 @@ export interface Product extends Node {
   updatedAt: DateTime
   name: String
   pictureUrl: String
+  description?: String | null
   price: Float
   seller: User
 }
@@ -2390,6 +2517,7 @@ export interface ProductPreviousValues {
   updatedAt: DateTime
   name: String
   pictureUrl: String
+  description?: String | null
   price: Float
 }
 

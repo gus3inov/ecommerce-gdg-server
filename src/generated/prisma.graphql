@@ -1,5 +1,5 @@
 # source: https://eu1.prisma.sh/muslim-guseinov-4235e0/ecommerce-gdg/dev
-# timestamp: Wed Dec 12 2018 21:43:20 GMT+0300 (RTZ 2 (зима))
+# timestamp: Thu Dec 20 2018 23:36:00 GMT+0300 (RTZ 2 (зима))
 
 type AggregatePost {
   count: Int!
@@ -605,6 +605,7 @@ type Product implements Node {
   updatedAt: DateTime!
   name: String!
   pictureUrl: String!
+  description: String
   price: Float!
   seller: User!
 }
@@ -622,6 +623,7 @@ type ProductConnection {
 input ProductCreateInput {
   name: String!
   pictureUrl: String!
+  description: String
   price: Float!
   seller: UserCreateOneWithoutProductsInput!
 }
@@ -634,6 +636,7 @@ input ProductCreateManyWithoutSellerInput {
 input ProductCreateWithoutSellerInput {
   name: String!
   pictureUrl: String!
+  description: String
   price: Float!
 }
 
@@ -657,6 +660,8 @@ enum ProductOrderByInput {
   name_DESC
   pictureUrl_ASC
   pictureUrl_DESC
+  description_ASC
+  description_DESC
   price_ASC
   price_DESC
 }
@@ -667,6 +672,7 @@ type ProductPreviousValues {
   updatedAt: DateTime!
   name: String!
   pictureUrl: String!
+  description: String
   price: Float!
 }
 
@@ -843,6 +849,46 @@ input ProductScalarWhereInput {
 
   """All values not ending with the given string."""
   pictureUrl_not_ends_with: String
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
   price: Float
 
   """All values that are not equal to given value."""
@@ -909,6 +955,7 @@ input ProductSubscriptionWhereInput {
 input ProductUpdateInput {
   name: String
   pictureUrl: String
+  description: String
   price: Float
   seller: UserUpdateOneRequiredWithoutProductsInput
 }
@@ -916,12 +963,14 @@ input ProductUpdateInput {
 input ProductUpdateManyDataInput {
   name: String
   pictureUrl: String
+  description: String
   price: Float
 }
 
 input ProductUpdateManyMutationInput {
   name: String
   pictureUrl: String
+  description: String
   price: Float
 }
 
@@ -944,6 +993,7 @@ input ProductUpdateManyWithWhereNestedInput {
 input ProductUpdateWithoutSellerDataInput {
   name: String
   pictureUrl: String
+  description: String
   price: Float
 }
 
@@ -1131,6 +1181,46 @@ input ProductWhereInput {
 
   """All values not ending with the given string."""
   pictureUrl_not_ends_with: String
+  description: String
+
+  """All values that are not equal to given value."""
+  description_not: String
+
+  """All values that are contained in given list."""
+  description_in: [String!]
+
+  """All values that are not contained in given list."""
+  description_not_in: [String!]
+
+  """All values less than the given value."""
+  description_lt: String
+
+  """All values less than or equal the given value."""
+  description_lte: String
+
+  """All values greater than the given value."""
+  description_gt: String
+
+  """All values greater than or equal the given value."""
+  description_gte: String
+
+  """All values containing the given string."""
+  description_contains: String
+
+  """All values not containing the given string."""
+  description_not_contains: String
+
+  """All values starting with the given string."""
+  description_starts_with: String
+
+  """All values not starting with the given string."""
+  description_not_starts_with: String
+
+  """All values ending with the given string."""
+  description_ends_with: String
+
+  """All values not ending with the given string."""
+  description_not_ends_with: String
   price: Float
 
   """All values that are not equal to given value."""
